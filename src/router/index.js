@@ -99,51 +99,6 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/pumping-stations',
-    component: Layout,
-    redirect: '/pumping-stations/charts',
-    alwaysShow: true,
-    name: 'Pumping Stations',
-    meta: {
-      title: 'Pumping Stations',
-      icon: 'list',
-      roles: ['admin', 'telemetry']
-    },
-    children: [
-      {
-        path: 'charts',
-        component: () => import('@/views/pumping-stations/charts'),
-        name: 'Pumping Stations Charts',
-        meta: {
-          title: 'Charts',
-          icon: 'chart',
-          roles: ['admin', 'telemetry']
-        }
-      },
-      {
-        path: 'map',
-        component: () => import('@/views/pumping-stations/map'),
-        name: 'Pumping Stations Map',
-        meta: {
-          title: 'Map',
-          icon: 'international',
-          roles: ['admin', 'telemetry']
-        }
-      },
-      {
-        path: 'details',
-        component: () => import('@/views/pumping-stations/details'),
-        name: 'Pumping Stations Details',
-        meta: {
-          title: 'Details',
-          icon: 'table',
-          roles: ['admin', 'telemetry']
-        }
-      }
-    ]
-  },
-
-  {
     path: '/risk-scoring',
     component: Layout,
     redirect: '/risk-scoring/charts',
@@ -183,6 +138,51 @@ export const asyncRoutes = [
           title: 'Details',
           icon: 'table',
           roles: ['admin']
+        }
+      }
+    ]
+  },
+
+  {
+    path: '/pumping-stations',
+    component: Layout,
+    redirect: '/pumping-stations/charts',
+    alwaysShow: true,
+    name: 'Pumping Stations',
+    meta: {
+      title: 'Pumping Stations',
+      icon: 'list',
+      roles: ['admin', 'telemetry']
+    },
+    children: [
+      {
+        path: 'charts',
+        component: () => import('@/views/pumping-stations/charts'),
+        name: 'Pumping Stations Charts',
+        meta: {
+          title: 'Charts',
+          icon: 'chart',
+          roles: ['admin', 'telemetry']
+        }
+      },
+      {
+        path: 'map',
+        component: () => import('@/views/pumping-stations/map'),
+        name: 'Pumping Stations Map',
+        meta: {
+          title: 'Map',
+          icon: 'international',
+          roles: ['admin', 'telemetry']
+        }
+      },
+      {
+        path: 'details',
+        component: () => import('@/views/pumping-stations/details'),
+        name: 'Pumping Stations Details',
+        meta: {
+          title: 'Details',
+          icon: 'table',
+          roles: ['admin', 'telemetry']
         }
       }
     ]

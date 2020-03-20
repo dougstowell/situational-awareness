@@ -5,6 +5,7 @@ export default [
     url: '/sa/pump-availability/list',
     type: 'get',
     response: _ => {
+
       return {
         code: 20000,
         data: {
@@ -18,8 +19,14 @@ export default [
             nhrAlarmsDurationGreaterThanFive: '@natural(0, 3)',
             availablePumps: '@natural(1, 5)',
             unavailablePumps: '@natural(1, 5)',
-            pumpAvailabilityPercentage: '@float(0.7, 0.9, 2, 3)',
-            timestamp: Mock.Random.date('yyyy-MM-dd A HH:mm:ss')
+            timestamp: Mock.Random.date('yyyy-MM-dd A HH:mm:ss'),
+            'pumps|4': [{
+              name: '@word()',
+              tagName: '@word()',
+              'tagValue|1': ['Available', 'Unavailable'],
+              availablePumps: '@natural(1, 5)',
+              unavailablePumps: '@natural(1, 5)'
+            }]
           }]
         }
       }

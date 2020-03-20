@@ -5,7 +5,6 @@
 <script>
 import echarts from 'echarts'
 import resize from './mixins/resize'
-import { pumpAvailabilityList } from '@/api/asset'
 
 export default {
   mixins: [resize],
@@ -24,17 +23,16 @@ export default {
     },
     height: {
       type: String,
-      default: '935px'
+      default: '800px'
     }
   },
   data() {
     return {
-      chartData: null,
       chart: null
     }
   },
   mounted() {
-    this.fetchData()
+    this.initChart()
   },
   beforeDestroy() {
     if (!this.chart) {
@@ -44,30 +42,12 @@ export default {
     this.chart = null
   },
   methods: {
-    fetchData() {
-      pumpAvailabilityList()
-        .then(response => {
-          this.chartData = response
-
-          this.initChart()
-        })
-    },
     initChart() {
       this.chart = echarts.init(this.$el)
 
-      const items = (this.chartData.data.items || []).sort((a, b) => {
-        const availPercentageA = a.availablePumps / (a.availablePumps + a.unavailablePumps)
-        const availPercentageB = b.availablePumps / (b.availablePumps + b.unavailablePumps)
-
-        return availPercentageA - availPercentageB
-      }).reverse().map(c => ({
-        name: c.name,
-        pumpAvailabilityPercentageVal: (c.availablePumps / (c.availablePumps + c.unavailablePumps)) * 100
-      }))
-
       this.chart.setOption({
         title: {
-          text: 'Percentage of Pump Availability by Sewage Pumping Station Name',
+          text: 'Count of Sewage Pumping Station by Risk Bracket',
           textStyle: {
             fontWeight: 'normal',
             fontSize: 14
@@ -78,6 +58,11 @@ export default {
           axisPointer: {
             type: 'shadow'
           }
+        },
+        legend: {
+          top: 25,
+          padding: 10,
+          data: ['High', 'Average', 'Low']
         },
         grid: {
           left: '3%',
@@ -90,20 +75,43 @@ export default {
         },
         yAxis: {
           type: 'category',
-          data: items.map(c => c.name)
+          data: ['Low', 'Average', 'High']
         },
-        series: items.map((c, i) => {
-          const data = new Array(items.length).fill(null)
-          data[i] = c.pumpAvailabilityPercentageVal
-
-          return {
-            name: c.name,
+        series: [
+          {
+            name: 'High',
             type: 'bar',
             stack: 'stack1',
-            color: '#004C6C',
-            data: data
+            color: '#741617',
+            label: {
+              show: true,
+              position: 'insideRight'
+            },
+            data: [null, null, 8]
+          },
+          {
+            name: 'Average',
+            type: 'bar',
+            stack: 'stack1',
+            color: '#C8CBCC',
+            label: {
+              show: true,
+              position: 'insideRight'
+            },
+            data: [null, 12, null]
+          },
+          {
+            name: 'Low',
+            type: 'bar',
+            stack: 'stack1',
+            color: '#005742',
+            label: {
+              show: true,
+              position: 'insideRight'
+            },
+            data: [160, null, null]
           }
-        })
+        ]
       })
     }
   }

@@ -24,7 +24,7 @@ export default {
     },
     height: {
       type: String,
-      default: '935px'
+      default: '800px'
     }
   },
   data() {
@@ -56,18 +56,12 @@ export default {
       this.chart = echarts.init(this.$el)
 
       const items = (this.chartData.data.items || []).sort((a, b) => {
-        const availPercentageA = a.availablePumps / (a.availablePumps + a.unavailablePumps)
-        const availPercentageB = b.availablePumps / (b.availablePumps + b.unavailablePumps)
-
-        return availPercentageA - availPercentageB
-      }).reverse().map(c => ({
-        name: c.name,
-        pumpAvailabilityPercentageVal: (c.availablePumps / (c.availablePumps + c.unavailablePumps)) * 100
-      }))
+        return a.riskScore - b.riskScore
+      })
 
       this.chart.setOption({
         title: {
-          text: 'Percentage of Pump Availability by Sewage Pumping Station Name',
+          text: 'Risk Score by Sewage Pumping Station Name',
           textStyle: {
             fontWeight: 'normal',
             fontSize: 14
@@ -94,7 +88,7 @@ export default {
         },
         series: items.map((c, i) => {
           const data = new Array(items.length).fill(null)
-          data[i] = c.pumpAvailabilityPercentageVal
+          data[i] = c.riskScore
 
           return {
             name: c.name,
