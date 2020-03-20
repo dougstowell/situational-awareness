@@ -40,7 +40,7 @@ var option = {
   },
   series: [
     {
-      name: 'Consented',
+      name: 'Available',
       type: 'bar',
       stack: 'stack1',
       color: '#33BE9D',
@@ -51,7 +51,7 @@ var option = {
       data: [240, 140]
     },
     {
-      name: 'Not Consented',
+      name: 'Unavailable',
       type: 'bar',
       stack: 'stack1',
       color: '#FD625E',

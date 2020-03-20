@@ -6,7 +6,7 @@
     :summary-method="getTotals"
     style="width: 100%;"
   >
-    <el-table-column label="Pump Name" prop="name" min-width="200" />
+    <el-table-column label="Pump Name" prop="name" />
     <el-table-column label="Tag Name" prop="tagName" />
     <el-table-column label="Tag Value" prop="tagValue" />
 

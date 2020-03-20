@@ -74,7 +74,7 @@ export default {
         },
         series: [
           {
-            name: 'Consented',
+            name: 'Not Consented',
             type: 'bar',
             stack: 'stack1',
             color: '#004C6C',
@@ -85,7 +85,7 @@ export default {
             data: [null, 94]
           },
           {
-            name: 'Not Consented',
+            name: 'Consented',
             type: 'bar',
             stack: 'stack1',
             color: '#004C6C',

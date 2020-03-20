@@ -5,7 +5,6 @@ export default [
     url: '/sa/pump-availability/list',
     type: 'get',
     response: _ => {
-
       return {
         code: 20000,
         data: {

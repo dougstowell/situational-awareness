@@ -1,11 +1,11 @@
 <template>
   <div class="app-container">
     <el-row :gutter="40">
-      <el-col :xs="24" :sm="24" :lg="16">
+      <el-col :xs="24" :sm="24" :lg="14">
         <h5>Pumping Station</h5>
         <asset-pump-availability-table @row-click="onRowClick" />
       </el-col>
-      <el-col :xs="24" :sm="24" :lg="8">
+      <el-col :xs="24" :sm="24" :lg="10">
         <template v-if="selectedStation">
           <h5>{{ pumpName }}</h5>
           <pump-availability-table :selected-station="selectedStation" />

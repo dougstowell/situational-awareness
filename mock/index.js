@@ -5,12 +5,14 @@ import asset from './asset'
 import user from './user'
 import role from './role'
 import article from './article'
+import map from './map'
 
 const mocks = [
   ...asset,
   ...user,
   ...role,
-  ...article
+  ...article,
+  ...map
 ]
 
 // for front mock
