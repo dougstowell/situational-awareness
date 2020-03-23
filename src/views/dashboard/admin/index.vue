@@ -17,7 +17,15 @@
             </el-dropdown>
           </div>
           <div class="component-item">
-            <panel-group-risk @panelClick="onPanelClick" />
+            <panel-group
+              low-text="Low"
+              low-end="156"
+              avg-text="Avg"
+              avg-end="14"
+              high-text="High"
+              high-end="10"
+              @panelClick="onPanelClick"
+            />
           </div>
         </el-card>
 
@@ -38,10 +46,25 @@
           </div>
           <div class="component-item">
             <h5>All Pumping Stations</h5>
-            <panel-group-availability-all @panelClick="onPanelClick" />
-
+            <panel-group
+              low-text="67-100%"
+              low-end="158"
+              avg-text="34-66%"
+              avg-end="18"
+              high-text="0-33%"
+              high-end="4"
+              @panelClick="onPanelClick"
+            />
             <h5>Consented Pumping Stations</h5>
-            <panel-group-availability-consented @panelClick="onPanelClick" />
+            <panel-group
+              low-text="67-100%"
+              low-end="54"
+              avg-text="34-66%"
+              avg-end="5"
+              high-text="0-33%"
+              high-end="1"
+              @panelClick="onPanelClick"
+            />
           </div>
         </el-card>
       </el-col>
@@ -92,9 +115,7 @@
 </template>
 
 <script>
-import PanelGroupRisk from '@/components/Cards/PanelGroupRisk'
-import PanelGroupAvailabilityAll from '@/components/Cards/PanelGroupAvailabilityAll'
-import PanelGroupAvailabilityConsented from '@/components/Cards/PanelGroupAvailabilityConsented'
+import PanelGroup from '@/components/Cards/PanelGroup'
 import AlarmCountChart from '@/components/Charts/AlarmCountChart'
 import RainfallCountChart from '@/components/Charts/RainfallCountChart'
 
@@ -115,9 +136,7 @@ var menuClick = (router, type, command) => {
 export default {
   name: 'DashboardAdmin',
   components: {
-    PanelGroupRisk,
-    PanelGroupAvailabilityAll,
-    PanelGroupAvailabilityConsented,
+    PanelGroup,
     AlarmCountChart,
     RainfallCountChart
   },

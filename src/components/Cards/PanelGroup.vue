@@ -2,40 +2,40 @@
   <el-row :gutter="20" class="panel-group">
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel" @click="onPanelClick(0)">
-        <div class="card-panel-icon-wrapper icon-people">
+        <div class="card-panel-icon-wrapper icon-high">
           <i class="el-icon-warning-outline card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            0 - 33%
+            {{ highText }}
           </div>
-          <count-to :start-val="0" :end-val="4" :duration="1000" class="card-panel-num" />
+          <count-to :start-val="highStart" :end-val="highEnd" :duration="durationMs" class="card-panel-num" />
         </div>
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel" @click="onPanelClick(1)">
-        <div class="card-panel-icon-wrapper icon-message">
+        <div class="card-panel-icon-wrapper icon-avg">
           <i class="el-icon-remove-outline card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            34 - 66%
+            {{ avgText }}
           </div>
-          <count-to :start-val="0" :end-val="18" :duration="1000" class="card-panel-num" />
+          <count-to :start-val="avgStart" :end-val="avgEnd" :duration="durationMs" class="card-panel-num" />
         </div>
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel" @click="onPanelClick(2)">
-        <div class="card-panel-icon-wrapper icon-money">
+        <div class="card-panel-icon-wrapper icon-low">
           <i class="el-icon-circle-check card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            67 - 100%
+            {{ lowText }}
           </div>
-          <count-to :start-val="0" :end-val="158" :duration="3200" class="card-panel-num" />
+          <count-to :start-val="lowStart" :end-val="lowEnd" :duration="durationMs" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -49,6 +49,49 @@ export default {
   components: {
     CountTo
   },
+  props: {
+    lowText: {
+      type: String,
+      default: ''
+    },
+    lowStart: {
+      type: Number,
+      default: 0
+    },
+    lowEnd: {
+      type: Number,
+      default: 0
+    },
+    avgText: {
+      type: String,
+      default: ''
+    },
+    avgStart: {
+      type: Number,
+      default: 0
+    },
+    avgEnd: {
+      type: Number,
+      default: 0
+    },
+    highText: {
+      type: String,
+      default: ''
+    },
+    highStart: {
+      type: Number,
+      default: 0
+    },
+    highEnd: {
+      type: Number,
+      default: 0
+    },
+    durationMs: {
+      type: Number,
+      default: 1000
+    }
+  },
+
   methods: {
     onPanelClick(index) {
       this.$emit('panelClick', index)
@@ -76,28 +119,28 @@ export default {
         color: #fff;
       }
 
-      .icon-people {
+      .icon-high {
         background: #f4516c;
       }
 
-      .icon-message {
+      .icon-avg {
         background: #36a3f7;
       }
 
-      .icon-money {
+      .icon-low {
         background: #40c9c6;
       }
     }
 
-    .icon-people {
+    .icon-high {
       color: #f4516c;
     }
 
-    .icon-message {
+    .icon-avg {
       color: #36a3f7;
     }
 
-    .icon-money {
+    .icon-low {
       color: #40c9c6;
     }
 
@@ -123,12 +166,12 @@ export default {
       .card-panel-text {
         line-height: 18px;
         color: rgba(0, 0, 0, 0.45);
-        font-size: 16px;
+        font-size: 12px;
         margin-bottom: 12px;
       }
 
       .card-panel-num {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
   }

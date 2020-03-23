@@ -18,7 +18,14 @@
             <span>Sewage Pumping Station Risk</span>
           </div>
           <div class="component-item">
-            <panel-group-risk />
+            <panel-group
+              low-text="Low"
+              low-end="156"
+              avg-text="Avg"
+              avg-end="14"
+              high-text="High"
+              high-end="10"
+            />
           </div>
         </el-card>
       </el-col>
@@ -29,7 +36,14 @@
             <span>All Pumping Station Availability</span>
           </div>
           <div class="component-item">
-            <panel-group-availability-all />
+            <panel-group
+              low-text="67-100%"
+              low-end="158"
+              avg-text="34-66%"
+              avg-end="18"
+              high-text="0-33%"
+              high-end="4"
+            />
           </div>
         </el-card>
       </el-col>
@@ -40,15 +54,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import PanThumb from '@/components/PanThumb'
-import PanelGroupRisk from '@/components/Cards/PanelGroupRisk'
-import PanelGroupAvailabilityAll from '@/components/Cards/PanelGroupAvailabilityAll'
+import PanelGroup from '@/components/Cards/PanelGroup'
 
 export default {
   name: 'DashboardTelemetry',
   components: {
     PanThumb,
-    PanelGroupRisk,
-    PanelGroupAvailabilityAll
+    PanelGroup
   },
   computed: {
     ...mapGetters([
