@@ -6,7 +6,8 @@
     :summary-method="getTotals"
     style="width: 100%;"
   >
-    <el-table-column label="Station Name" prop="name" sortable min-width="200" />
+    <el-table-column label="Station Name" prop="name" sortable min-width="180" />
+
     <el-table-column
       label="Consented"
       sortable
@@ -21,7 +22,13 @@
       ]"
       :filter-method="filterConsented"
       filter-placement="bottom-end"
-    />
+      align="center"
+    >
+      <template slot-scope="{row}">
+        <i v-if="row.consented === 'Consented'" class="el-icon-circle-check" />
+        <i v-else class="el-icon-circle-close" />
+      </template>
+    </el-table-column>
 
     <el-table-column label="Risk Score" align="center">
       <template slot-scope="{row}">
@@ -38,7 +45,7 @@
     <el-table-column label="Available Pumps" prop="availablePumps" align="center" />
     <el-table-column label="Unavailable Pumps" prop="unavailablePumps" align="center" />
 
-    <el-table-column label="Pump Availability %" align="center">
+    <el-table-column label="Pump Avail %" align="center">
       <template slot-scope="{row}">
         {{ row.availablePumps / (row.availablePumps + row.unavailablePumps) | toPercentage }}
       </template>

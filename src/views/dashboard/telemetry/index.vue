@@ -1,6 +1,6 @@
 <template>
-  <div class="dashboard-editor-container">
-    <div class=" clearfix">
+  <div class="dashboard-telemetry-container">
+    <div class="clearfix">
       <pan-thumb :image="avatar" style="float: left">
         Your roles:
         <span v-for="item in roles" :key="item" class="pan-info-roles">{{ item }}</span>
@@ -10,16 +10,46 @@
         <span style="font-size:20px;padding-top:20px;display:inline-block;">Telemetry Dashboard</span>
       </div>
     </div>
+
+    <el-row :gutter="10" style="margin-top: 20px;">
+      <el-col :xs="24" :sm="24" :lg="16">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>Sewage Pumping Station Risk</span>
+          </div>
+          <div class="component-item">
+            <panel-group-risk />
+          </div>
+        </el-card>
+      </el-col>
+
+      <el-col :xs="24" :sm="24" :lg="8">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>All Pumping Station Availability</span>
+          </div>
+          <div class="component-item">
+            <panel-group-availability-all />
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import PanThumb from '@/components/PanThumb'
+import PanelGroupRisk from '@/components/Cards/PanelGroupRisk'
+import PanelGroupAvailabilityAll from '@/components/Cards/PanelGroupAvailabilityAll'
 
 export default {
-  name: 'DashboardEditor',
-  components: { PanThumb },
+  name: 'DashboardTelemetry',
+  components: {
+    PanThumb,
+    PanelGroupRisk,
+    PanelGroupAvailabilityAll
+  },
   computed: {
     ...mapGetters([
       'name',
@@ -31,7 +61,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .dashboard-editor-container {
+  .dashboard-telemetry-container {
     background-color: #e3e3e3;
     min-height: 100vh;
     padding: 50px 60px 0px;

@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-row :gutter="40">
+    <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :lg="8">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
@@ -16,6 +16,9 @@
           <div slot="header" class="clearfix">
             <span>Pump Risk Score Locations</span>
           </div>
+          <div class="component-item">
+            <risk-score-location-chart />
+          </div>
         </el-card>
       </el-col>
     </el-row>
@@ -24,11 +27,13 @@
 
 <script>
 import RiskCategoryChart from '@/components/Charts/RiskCategoryChart'
+import RiskScoreLocationChart from '@/components/Charts/RiskScoreLocationChart'
 
 export default {
   name: 'Charts',
   components: {
-    RiskCategoryChart
+    RiskCategoryChart,
+    RiskScoreLocationChart
   }
 }
 </script>

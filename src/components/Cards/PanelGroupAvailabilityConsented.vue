@@ -1,5 +1,5 @@
 <template>
-  <el-row :gutter="40" class="panel-group">
+  <el-row :gutter="20" class="panel-group">
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel" @click="onPanelClick(0)">
         <div class="card-panel-icon-wrapper icon-people">
@@ -111,7 +111,7 @@ export default {
 
     .card-panel-icon {
       float: left;
-      font-size: 48px;
+      font-size: 38px;
     }
 
     .card-panel-description {

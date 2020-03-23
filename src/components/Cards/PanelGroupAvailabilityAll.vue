@@ -1,5 +1,5 @@
 <template>
-  <el-row :gutter="40" class="panel-group">
+  <el-row :gutter="20" class="panel-group">
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel" @click="onPanelClick(0)">
         <div class="card-panel-icon-wrapper icon-people">
@@ -7,9 +7,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            High
+            0 - 33%
           </div>
-          <count-to :start-val="0" :end-val="10" :duration="1000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="4" :duration="1000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -20,9 +20,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Average
+            34 - 66%
           </div>
-          <count-to :start-val="0" :end-val="14" :duration="1000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="18" :duration="1000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -33,9 +33,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Low
+            67 - 100%
           </div>
-          <count-to :start-val="0" :end-val="156" :duration="3200" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="158" :duration="3200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -111,7 +111,7 @@ export default {
 
     .card-panel-icon {
       float: left;
-      font-size: 48px;
+      font-size: 38px;
     }
 
     .card-panel-description {

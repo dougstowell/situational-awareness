@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-row :gutter="40">
+    <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :lg="12">
         <div class="chart-wrapper">
           <el-card class="box-card">

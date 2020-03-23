@@ -7,7 +7,8 @@
     style="width: 100%;"
     @row-click="onRowClick"
   >
-    <el-table-column label="Station Name" prop="name" sortable min-width="200" />
+    <el-table-column label="Station Name" prop="name" sortable min-width="180" />
+
     <el-table-column
       label="Consented"
       sortable
@@ -22,17 +23,18 @@
       ]"
       :filter-method="filterConsented"
       filter-placement="bottom-end"
-    />
-
-    <el-table-column label="Pumps" align="center">
+      align="center"
+    >
       <template slot-scope="{row}">
-        {{ row.availablePumps + row.unavailablePumps }}
+        <i v-if="row.consented === 'Consented'" class="el-icon-circle-check" />
+        <i v-else class="el-icon-circle-close" />
       </template>
     </el-table-column>
+
     <el-table-column label="Available" prop="availablePumps" align="center" />
     <el-table-column label="Unavailable" prop="unavailablePumps" align="center" />
 
-    <el-table-column label="Availability %" align="center">
+    <el-table-column label="Avail %" align="center">
       <template slot-scope="{row}">
         {{ row.availablePumps / (row.availablePumps + row.unavailablePumps) | toPercentage }}
       </template>

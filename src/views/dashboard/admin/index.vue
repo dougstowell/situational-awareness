@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-row :gutter="40">
+    <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :lg="12">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
@@ -92,9 +92,9 @@
 </template>
 
 <script>
-import PanelGroupRisk from './components/PanelGroupRisk'
-import PanelGroupAvailabilityAll from './components/PanelGroupAvailabilityAll'
-import PanelGroupAvailabilityConsented from './components/PanelGroupAvailabilityConsented'
+import PanelGroupRisk from '@/components/Cards/PanelGroupRisk'
+import PanelGroupAvailabilityAll from '@/components/Cards/PanelGroupAvailabilityAll'
+import PanelGroupAvailabilityConsented from '@/components/Cards/PanelGroupAvailabilityConsented'
 import AlarmCountChart from '@/components/Charts/AlarmCountChart'
 import RainfallCountChart from '@/components/Charts/RainfallCountChart'
 

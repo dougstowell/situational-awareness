@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-row :gutter="40">
+    <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :lg="14">
         <h5>Pumping Station</h5>
         <asset-pump-availability-table @row-click="onRowClick" />
