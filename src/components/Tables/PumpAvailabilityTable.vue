@@ -11,7 +11,11 @@
     <el-table-column label="Tag Value" prop="tagValue" />
 
     <el-table-column label="Available" prop="availablePumps" align="center" />
-    <el-table-column label="Unavailable" prop="unavailablePumps" align="center" />
+    <el-table-column
+      label="Unavailable"
+      prop="unavailablePumps"
+      align="center"
+    />
   </el-table>
 </template>
 
@@ -26,45 +30,41 @@ export default {
 
   computed: {
     list() {
-      return (this.selectedStation || {}).pumps || []
+      return (this.selectedStation || {}).pumps || [];
     }
-  },
-
-  created() {
-    this.fetchData()
   },
 
   methods: {
     getTotals(param) {
-      const { columns, data } = param
-      const sums = []
+      const { columns, data } = param;
+      const sums = [];
       columns.forEach((column, index) => {
         if (index === 0) {
-          sums[index] = 'Total'
-          return
+          sums[index] = 'Total';
+          return;
         }
         if (index === 1 || index === 2 || index === 8) {
-          sums[index] = null
-          return
+          sums[index] = null;
+          return;
         }
 
-        const values = (data || []).map(item => Number(item[column.property]))
+        const values = (data || []).map(item => Number(item[column.property]));
         if (!values.every(value => isNaN(value))) {
           sums[index] = values.reduce((prev, curr) => {
-            const value = Number(curr)
+            const value = Number(curr);
             if (!isNaN(value)) {
-              return prev + curr
+              return prev + curr;
             } else {
-              return prev
+              return prev;
             }
-          }, 0)
+          }, 0);
         } else {
-          sums[index] = 'N/A'
+          sums[index] = 'N/A';
         }
-      })
+      });
 
-      return sums
+      return sums;
     }
   }
-}
+};
 </script>

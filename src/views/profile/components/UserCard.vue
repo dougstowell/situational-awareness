@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import PanThumb from '@/components/PanThumb'
+import PanThumb from '@/components/PanThumb';
 
 export default {
   components: { PanThumb },
@@ -66,11 +66,11 @@ export default {
           email: '',
           avatar: '',
           roles: ''
-        }
+        };
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

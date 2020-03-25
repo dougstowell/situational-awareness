@@ -32,7 +32,7 @@ export default {
           content: 'Completed and passed'
         }
       ]
-    }
+    };
   }
-}
+};
 </script>

@@ -5,15 +5,14 @@
 </template>
 
 <script>
-import AssetPumpRiskScoreTable from '@/components/Tables/AssetPumpRiskScoreTable'
+import AssetPumpRiskScoreTable from '@/components/Tables/AssetPumpRiskScoreTable';
 
 export default {
   name: 'RiskScoreDetails',
   components: {
     AssetPumpRiskScoreTable
   }
-}
+};
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

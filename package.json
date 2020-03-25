@@ -10,6 +10,7 @@
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
     "lint": "eslint --ext .js,.vue src",
+    "lint:fix": "eslint --ext .js,.vue src --fix",
     "test:unit": "jest --clearCache && vue-cli-service test:unit",
     "test:ci": "npm run lint && npm run test:unit",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
@@ -74,12 +75,14 @@
     "chokidar": "2.1.5",
     "connect": "3.6.6",
     "eslint": "5.15.3",
+    "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-vue": "5.2.2",
     "html-webpack-plugin": "3.2.0",
     "husky": "1.3.1",
     "lint-staged": "8.1.5",
     "mockjs": "1.0.1-beta3",
     "node-sass": "^4.9.0",
+    "prettier": "2.0.2",
     "runjs": "^4.3.2",
     "sass-loader": "^7.1.0",
     "script-ext-html-webpack-plugin": "2.1.3",
@@ -87,6 +90,12 @@
     "svg-sprite-loader": "4.1.3",
     "svgo": "1.2.0",
     "vue-template-compiler": "2.6.10"
+  },
+  "prrettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true
   },
   "engines": {
     "node": ">=8.9",

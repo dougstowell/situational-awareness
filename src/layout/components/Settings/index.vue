@@ -15,18 +15,18 @@
 <script>
 export default {
   data() {
-    return {}
+    return {};
   },
   computed: {
     fixedHeader: {
       get() {
-        return this.$store.state.settings.fixedHeader
+        return this.$store.state.settings.fixedHeader;
       },
       set(val) {
         this.$store.dispatch('settings/changeSetting', {
           key: 'fixedHeader',
           value: val
-        })
+        });
       }
     }
   },
@@ -35,10 +35,10 @@ export default {
       this.$store.dispatch('settings/changeSetting', {
         key: 'theme',
         value: val
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

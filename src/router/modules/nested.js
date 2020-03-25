@@ -1,6 +1,6 @@
 /** When your routing table is too long, you can split it into small modules **/
 
-import Layout from '@/layout'
+import Layout from '@/layout';
 
 const nestedRouter = {
   path: '/nested',
@@ -61,6 +61,6 @@ const nestedRouter = {
       meta: { title: 'Menu 2' }
     }
   ]
-}
+};
 
-export default nestedRouter
+export default nestedRouter;

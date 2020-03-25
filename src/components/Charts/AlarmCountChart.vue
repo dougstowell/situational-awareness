@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import echarts from 'echarts'
-import resize from './mixins/resize'
+import echarts from 'echarts';
+import resize from './mixins/resize';
 
 var option = {
   title: {
@@ -95,7 +95,7 @@ var option = {
       data: [null, null, 17, 1, 3]
     }
   ]
-}
+};
 
 export default {
   mixins: [resize],
@@ -120,24 +120,24 @@ export default {
   data() {
     return {
       chart: null
-    }
+    };
   },
   mounted() {
-    this.initChart()
+    this.initChart();
   },
   beforeDestroy() {
     if (!this.chart) {
-      return
+      return;
     }
-    this.chart.dispose()
-    this.chart = null
+    this.chart.dispose();
+    this.chart = null;
   },
   methods: {
     initChart() {
-      this.chart = echarts.init(this.$el)
+      this.chart = echarts.init(this.$el);
 
-      this.chart.setOption(option)
+      this.chart.setOption(option);
     }
   }
-}
+};
 </script>

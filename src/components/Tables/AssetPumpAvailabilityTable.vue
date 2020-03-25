@@ -43,77 +43,77 @@
 </template>
 
 <script>
-import { pumpAvailabilityList } from '@/api/asset'
+import { pumpAvailabilityList } from '@/api/asset';
 
 export default {
   filters: {
     riskScoreBracketFilter(riskScore) {
       if (riskScore <= 20) {
-        return 'success'
+        return 'success';
       }
       if (riskScore <= 60) {
-        return 'warning'
+        return 'warning';
       }
 
-      return 'danger'
+      return 'danger';
     }
   },
 
   data() {
     return {
       list: null
-    }
+    };
   },
 
   created() {
-    this.fetchData()
+    this.fetchData();
   },
 
   methods: {
     fetchData() {
       pumpAvailabilityList().then(response => {
-        this.list = response.data.items
-      })
+        this.list = response.data.items;
+      });
     },
 
     filterConsented(value, row) {
-      return row.consented === value
+      return row.consented === value;
     },
 
     getTotals(param) {
-      const { columns, data } = param
-      const sums = []
+      const { columns, data } = param;
+      const sums = [];
       columns.forEach((column, index) => {
         if (index === 0) {
-          sums[index] = 'Total'
-          return
+          sums[index] = 'Total';
+          return;
         }
         if (index === 1 || index === 5) {
-          sums[index] = null
-          return
+          sums[index] = null;
+          return;
         }
 
-        const values = (data || []).map(item => Number(item[column.property]))
+        const values = (data || []).map(item => Number(item[column.property]));
         if (!values.every(value => isNaN(value))) {
           sums[index] = values.reduce((prev, curr) => {
-            const value = Number(curr)
+            const value = Number(curr);
             if (!isNaN(value)) {
-              return prev + curr
+              return prev + curr;
             } else {
-              return prev
+              return prev;
             }
-          }, 0)
+          }, 0);
         } else {
-          sums[index] = 'N/A'
+          sums[index] = 'N/A';
         }
-      })
+      });
 
-      return sums
+      return sums;
     },
 
     onRowClick(row) {
-      this.$emit('row-click', row)
+      this.$emit('row-click', row);
     }
   }
-}
+};
 </script>

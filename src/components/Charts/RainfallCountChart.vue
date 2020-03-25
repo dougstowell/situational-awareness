@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import echarts from 'echarts'
-import resize from './mixins/resize'
+import echarts from 'echarts';
+import resize from './mixins/resize';
 
 var dataSets = {
   'No Rain': [
@@ -22,7 +22,7 @@ var dataSets = {
     [null, 2, 1, 7],
     [null, 4, 2, 3]
   ]
-}
+};
 
 var buildOptions = index => {
   return {
@@ -92,8 +92,8 @@ var buildOptions = index => {
         data: dataSets['Increasing'][index]
       }
     ]
-  }
-}
+  };
+};
 
 export default {
   mixins: [resize],
@@ -122,36 +122,36 @@ export default {
   data() {
     return {
       chart: null
-    }
+    };
   },
   watch: {
     chartIndex: {
       deep: true,
       handler(val) {
-        this.setOptions(val)
+        this.setOptions(val);
       }
     }
   },
   mounted() {
-    this.initChart()
+    this.initChart();
   },
   beforeDestroy() {
     if (!this.chart) {
-      return
+      return;
     }
-    this.chart.dispose()
-    this.chart = null
+    this.chart.dispose();
+    this.chart = null;
   },
   methods: {
     initChart() {
-      this.chart = echarts.init(this.$el)
+      this.chart = echarts.init(this.$el);
 
-      this.setOptions(0)
+      this.setOptions(0);
     },
 
     setOptions(index) {
-      this.chart.setOption(buildOptions(index))
+      this.chart.setOption(buildOptions(index));
     }
   }
-}
+};
 </script>

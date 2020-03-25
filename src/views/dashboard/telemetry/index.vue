@@ -52,9 +52,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import PanThumb from '@/components/PanThumb'
-import PanelGroup from '@/components/Cards/PanelGroup'
+import { mapGetters } from 'vuex';
+import PanThumb from '@/components/PanThumb';
+import PanelGroup from '@/components/Cards/PanelGroup';
 
 export default {
   name: 'DashboardTelemetry',
@@ -69,7 +69,7 @@ export default {
       'roles'
     ])
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

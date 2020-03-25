@@ -1,17 +1,17 @@
-import request from '@/utils/request'
+import request from '@/utils/request';
 
 export function getRoutes() {
   return request({
     url: '/sa/routes',
     method: 'get'
-  })
+  });
 }
 
 export function getRoles() {
   return request({
     url: '/sa/roles',
     method: 'get'
-  })
+  });
 }
 
 export function addRole(data) {
@@ -19,7 +19,7 @@ export function addRole(data) {
     url: '/sa/role',
     method: 'post',
     data
-  })
+  });
 }
 
 export function updateRole(id, data) {
@@ -27,12 +27,12 @@ export function updateRole(id, data) {
     url: `/sa/role/${id}`,
     method: 'put',
     data
-  })
+  });
 }
 
 export function deleteRole(id) {
   return request({
     url: `/sa/role/${id}`,
     method: 'delete'
-  })
+  });
 }

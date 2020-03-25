@@ -15,9 +15,20 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>Pump Risk Score Locations</span>
+            <el-dropdown style="float: right;" @command="onMapMenuClick">
+              <span class="el-dropdown-link">
+                {{ location }}
+                <i class="el-icon-arrow-down el-icon--right" />
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="York">York</el-dropdown-item>
+                <el-dropdown-item command="Leeds">Leeds</el-dropdown-item>
+                <el-dropdown-item command="Bradford">Bradford</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
           </div>
           <div class="component-item">
-            <risk-score-location-chart />
+            <risk-score-location-chart :map="location" />
           </div>
         </el-card>
       </el-col>
@@ -26,16 +37,29 @@
 </template>
 
 <script>
-import RiskCategoryChart from '@/components/Charts/RiskCategoryChart'
-import RiskScoreLocationChart from '@/components/Charts/RiskScoreLocationChart'
+import RiskCategoryChart from '@/components/Charts/RiskCategoryChart';
+import RiskScoreLocationChart from '@/components/Charts/RiskScoreLocationChart';
 
 export default {
   name: 'Charts',
+
   components: {
     RiskCategoryChart,
     RiskScoreLocationChart
+  },
+
+  data() {
+    return {
+      location: 'York'
+    };
+  },
+
+  methods: {
+    onMapMenuClick(location) {
+      this.location = location;
+    }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

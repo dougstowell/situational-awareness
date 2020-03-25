@@ -17,36 +17,35 @@
 </template>
 
 <script>
-import AssetPumpAvailabilityTable from '@/components/Tables/AssetPumpAvailabilityTable'
-import PumpAvailabilityTable from '@/components/Tables/PumpAvailabilityTable'
+import AssetPumpAvailabilityTable from '@/components/Tables/AssetPumpAvailabilityTable';
+import PumpAvailabilityTable from '@/components/Tables/PumpAvailabilityTable';
 
 export default {
   name: 'PumpDetails',
 
   components: {
     AssetPumpAvailabilityTable,
-    PumpAvailabilityTable
+    PumpAvailabilityTable,
   },
 
   data() {
     return {
-      selectedStation: null
-    }
+      selectedStation: null,
+    };
   },
 
   computed: {
     pumpName() {
-      return (this.selectedStation || {}).name
-    }
+      return (this.selectedStation || {}).name;
+    },
   },
 
   methods: {
     onRowClick(row) {
-      this.selectedStation = row
-    }
-  }
-}
+      this.selectedStation = row;
+    },
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

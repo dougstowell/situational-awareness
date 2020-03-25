@@ -1,11 +1,11 @@
-import request from '@/utils/request'
+import request from '@/utils/request';
 
 export function fetchList(query) {
   return request({
     url: '/sa/article/list',
     method: 'get',
     params: query
-  })
+  });
 }
 
 export function fetchArticle(id) {
@@ -13,7 +13,7 @@ export function fetchArticle(id) {
     url: '/sa/article/detail',
     method: 'get',
     params: { id }
-  })
+  });
 }
 
 export function fetchPv(pv) {
@@ -21,7 +21,7 @@ export function fetchPv(pv) {
     url: 'sa/article/pv',
     method: 'get',
     params: { pv }
-  })
+  });
 }
 
 export function createArticle(data) {
@@ -29,7 +29,7 @@ export function createArticle(data) {
     url: '/sa/article/create',
     method: 'post',
     data
-  })
+  });
 }
 
 export function updateArticle(data) {
@@ -37,5 +37,5 @@ export function updateArticle(data) {
     url: '/sa/article/update',
     method: 'post',
     data
-  })
+  });
 }

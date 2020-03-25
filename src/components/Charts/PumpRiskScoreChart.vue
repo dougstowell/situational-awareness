@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import echarts from 'echarts'
-import resize from './mixins/resize'
-import { pumpAvailabilityList } from '@/api/asset'
+import echarts from 'echarts';
+import resize from './mixins/resize';
+import { pumpAvailabilityList } from '@/api/asset';
 
 export default {
   mixins: [resize],
@@ -31,33 +31,33 @@ export default {
     return {
       chartData: null,
       chart: null
-    }
+    };
   },
   mounted() {
-    this.fetchData()
+    this.fetchData();
   },
   beforeDestroy() {
     if (!this.chart) {
-      return
+      return;
     }
-    this.chart.dispose()
-    this.chart = null
+    this.chart.dispose();
+    this.chart = null;
   },
   methods: {
     fetchData() {
       pumpAvailabilityList()
         .then(response => {
-          this.chartData = response
+          this.chartData = response;
 
-          this.initChart()
-        })
+          this.initChart();
+        });
     },
     initChart() {
-      this.chart = echarts.init(this.$el)
+      this.chart = echarts.init(this.$el);
 
       const items = (this.chartData.data.items || []).sort((a, b) => {
-        return a.riskScore - b.riskScore
-      })
+        return a.riskScore - b.riskScore;
+      });
 
       this.chart.setOption({
         title: {
@@ -87,8 +87,8 @@ export default {
           data: items.map(c => c.name)
         },
         series: items.map((c, i) => {
-          const data = new Array(items.length).fill(null)
-          data[i] = c.riskScore
+          const data = new Array(items.length).fill(null);
+          data[i] = c.riskScore;
 
           return {
             name: c.name,
@@ -96,10 +96,10 @@ export default {
             stack: 'stack1',
             color: '#004C6C',
             data: data
-          }
+          };
         })
-      })
+      });
     }
   }
-}
+};
 </script>

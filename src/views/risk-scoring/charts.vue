@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import PumpRiskBracketCountChart from '@/components/Charts/PumpRiskBracketCountChart'
-import PumpRiskScoreChart from '@/components/Charts/PumpRiskScoreChart'
+import PumpRiskBracketCountChart from '@/components/Charts/PumpRiskBracketCountChart';
+import PumpRiskScoreChart from '@/components/Charts/PumpRiskScoreChart';
 
 export default {
   name: 'Charts',
@@ -39,7 +39,7 @@ export default {
     PumpRiskBracketCountChart,
     PumpRiskScoreChart
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import echarts from 'echarts'
-import resize from './mixins/resize'
-import { pumpAvailabilityList } from '@/api/asset'
+import echarts from 'echarts';
+import resize from './mixins/resize';
+import { pumpAvailabilityList } from '@/api/asset';
 
 export default {
   mixins: [resize],
@@ -31,39 +31,39 @@ export default {
     return {
       chartData: null,
       chart: null
-    }
+    };
   },
   mounted() {
-    this.fetchData()
+    this.fetchData();
   },
   beforeDestroy() {
     if (!this.chart) {
-      return
+      return;
     }
-    this.chart.dispose()
-    this.chart = null
+    this.chart.dispose();
+    this.chart = null;
   },
   methods: {
     fetchData() {
       pumpAvailabilityList()
         .then(response => {
-          this.chartData = response
+          this.chartData = response;
 
-          this.initChart()
-        })
+          this.initChart();
+        });
     },
     initChart() {
-      this.chart = echarts.init(this.$el)
+      this.chart = echarts.init(this.$el);
 
       const items = (this.chartData.data.items || []).sort((a, b) => {
-        const availPercentageA = a.availablePumps / (a.availablePumps + a.unavailablePumps)
-        const availPercentageB = b.availablePumps / (b.availablePumps + b.unavailablePumps)
+        const availPercentageA = a.availablePumps / (a.availablePumps + a.unavailablePumps);
+        const availPercentageB = b.availablePumps / (b.availablePumps + b.unavailablePumps);
 
-        return availPercentageA - availPercentageB
+        return availPercentageA - availPercentageB;
       }).reverse().map(c => ({
         name: c.name,
         pumpAvailabilityPercentageVal: (c.availablePumps / (c.availablePumps + c.unavailablePumps)) * 100
-      }))
+      }));
 
       this.chart.setOption({
         title: {
@@ -93,8 +93,8 @@ export default {
           data: items.map(c => c.name)
         },
         series: items.map((c, i) => {
-          const data = new Array(items.length).fill(null)
-          data[i] = c.pumpAvailabilityPercentageVal
+          const data = new Array(items.length).fill(null);
+          data[i] = c.pumpAvailabilityPercentageVal;
 
           return {
             name: c.name,
@@ -102,10 +102,10 @@ export default {
             stack: 'stack1',
             color: '#004C6C',
             data: data
-          }
+          };
         })
-      })
+      });
     }
   }
-}
+};
 </script>

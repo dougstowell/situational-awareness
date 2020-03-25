@@ -21,7 +21,7 @@ export default {
         return {
           name: '',
           email: ''
-        }
+        };
       }
     }
   },
@@ -31,8 +31,8 @@ export default {
         message: 'User information has been updated successfully',
         type: 'success',
         duration: 5 * 1000
-      })
+      });
     }
   }
-}
+};
 </script>

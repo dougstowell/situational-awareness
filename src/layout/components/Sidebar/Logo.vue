@@ -26,9 +26,9 @@ export default {
     return {
       title: 'Situational Awareness',
       logo: 'https://i.picsum.photos/id/203/200/200.jpg'
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

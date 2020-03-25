@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import CountTo from 'vue-count-to'
+import CountTo from 'vue-count-to';
 
 export default {
   components: {
@@ -94,10 +94,10 @@ export default {
 
   methods: {
     onPanelClick(index) {
-      this.$emit('panelClick', index)
+      this.$emit('panelClick', index);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

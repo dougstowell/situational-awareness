@@ -41,9 +41,9 @@
 </template>
 
 <script>
-import ConsentedPumpAvailabilityPercentChart from '@/components/Charts/ConsentedPumpAvailabilityPercentChart'
-import ConsentedPumpAvailabilityCountChart from '@/components/Charts/ConsentedPumpAvailabilityCountChart'
-import PumpAvailabilityPercentChart from '@/components/Charts/PumpAvailabilityPercentChart'
+import ConsentedPumpAvailabilityPercentChart from '@/components/Charts/ConsentedPumpAvailabilityPercentChart';
+import ConsentedPumpAvailabilityCountChart from '@/components/Charts/ConsentedPumpAvailabilityCountChart';
+import PumpAvailabilityPercentChart from '@/components/Charts/PumpAvailabilityPercentChart';
 
 export default {
   name: 'Charts',
@@ -52,7 +52,7 @@ export default {
     ConsentedPumpAvailabilityCountChart,
     PumpAvailabilityPercentChart
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
