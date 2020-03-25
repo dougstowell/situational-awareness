@@ -24,6 +24,7 @@ var options = {
 
 export default {
   mixins: [resize],
+
   props: {
     className: {
       type: String,

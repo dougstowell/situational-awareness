@@ -28,7 +28,7 @@
             </el-dropdown>
           </div>
           <div class="component-item">
-            <risk-score-location-chart :map="location" />
+            <risk-score-location-map :lat="lat" :long="long" />
           </div>
         </el-card>
       </el-col>
@@ -38,25 +38,41 @@
 
 <script>
 import RiskCategoryChart from '@/components/Charts/RiskCategoryChart';
-import RiskScoreLocationChart from '@/components/Charts/RiskScoreLocationChart';
+import RiskScoreLocationMap from '@/components/Charts/RiskScoreLocationMap';
 
 export default {
   name: 'Charts',
 
   components: {
     RiskCategoryChart,
-    RiskScoreLocationChart
+    RiskScoreLocationMap
   },
 
   data() {
     return {
-      location: 'York'
+      location: 'York',
+      lat: 53.958332,
+      long: -1.080278
     };
   },
 
   methods: {
     onMapMenuClick(location) {
       this.location = location;
+      if (location === 'Leeds') {
+        this.lat = 53.801277;
+        this.long = -1.548567;
+        return;
+      }
+
+      if (location === 'Bradford') {
+        this.lat = 53.799999;
+        this.long = -1.75;
+        return;
+      }
+
+      this.lat = 53.958332;
+      this.long = -1.080278;
     }
   }
 };
