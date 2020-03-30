@@ -17,7 +17,7 @@
             <span>Pump Risk Score Locations</span>
             <el-dropdown style="float: right;" @command="onMapMenuClick">
               <span class="el-dropdown-link">
-                {{ location }}
+                {{ (location || {}).name }}
                 <i class="el-icon-arrow-down el-icon--right" />
               </span>
               <el-dropdown-menu slot="dropdown">
@@ -28,7 +28,7 @@
             </el-dropdown>
           </div>
           <div class="component-item">
-            <risk-score-location-map :lat="lat" :long="long" />
+            <risk-score-location-map :location="location" />
           </div>
         </el-card>
       </el-col>
@@ -39,6 +39,7 @@
 <script>
 import RiskCategoryChart from '@/components/Charts/RiskCategoryChart';
 import RiskScoreLocationMap from '@/components/Charts/RiskScoreLocationMap';
+import { pumpScoreList } from '@/api/asset';
 
 export default {
   name: 'Charts',
@@ -50,29 +51,25 @@ export default {
 
   data() {
     return {
-      location: 'York',
-      lat: 53.958332,
-      long: -1.080278
+      location: null,
+      locations: null,
     };
   },
 
+  mounted() {
+    this.fetchData();
+  },
+
   methods: {
-    onMapMenuClick(location) {
-      this.location = location;
-      if (location === 'Leeds') {
-        this.lat = 53.801277;
-        this.long = -1.548567;
-        return;
-      }
+    fetchData() {
+      pumpScoreList().then(response => {
+        this.locations = response.data;
+        this.location = this.locations['York'];
+      });
+    },
 
-      if (location === 'Bradford') {
-        this.lat = 53.799999;
-        this.long = -1.75;
-        return;
-      }
-
-      this.lat = 53.958332;
-      this.long = -1.080278;
+    onMapMenuClick(locationSelected) {
+      this.location = this.locations[locationSelected];
     }
   }
 };

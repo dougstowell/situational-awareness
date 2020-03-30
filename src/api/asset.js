@@ -7,3 +7,11 @@ export function pumpAvailabilityList(query) {
     params: query
   });
 }
+
+export function pumpScoreList(query) {
+  return request({
+    url: '/sa/pump-score/list',
+    method: 'get',
+    params: query
+  });
+}

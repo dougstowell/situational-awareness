@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 600px; width: 100%;">
+  <div v-if="location" style="height: 600px; width: 100%;">
     <l-map
       :zoom="zoom"
       :center="center"
@@ -7,35 +7,69 @@
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
     >
-      <l-tile-layer :url="url" :attribution="attribution" />
-      <l-marker :lat-lng="withPopup">
+      <l-tile-layer :url="url" />
+
+      <l-circle-marker
+        v-for="marker in lMarkers"
+        :key="marker.name"
+        :lat-lng="marker.lMarker"
+        :color="marker.riskScore | riskScoreColorFilter"
+      >
         <l-popup>
           <div>
-            I am a popup
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              sed pretium nisl, ut sagittis sapien. Sed vel sollicitudin nisi.
-              Donec finibus semper metus id malesuada.
-            </p>
+            <h4>
+              {{ marker.name }}
+              <el-tag :type="marker.riskScore | riskScoreBracketFilter">{{ marker.riskScore }}</el-tag>
+            </h4>
+            <p>Pump is Available: Available</p>
+            <p>Latitude: {{ marker.lat }}</p>
+            <p>Longitude: {{ marker.lng }}</p>
+            <p>Count of Pump: {{ marker.numberOfPumps }}</p>
+            <p>Asset Type: {{ marker.assetType }}</p>
+            <p>Is Consented: {{ marker.consented }}</p>
           </div>
         </l-popup>
-      </l-marker>
+      </l-circle-marker>
     </l-map>
   </div>
 </template>
 
 <script>
 import { latLng } from 'leaflet';
-import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
+import { LMap, LTileLayer, LPopup, LCircleMarker } from 'vue2-leaflet';
 
 export default {
-  name: 'Example',
+  name: 'RiskScoreLocationMap',
+
+  filters: {
+    riskScoreBracketFilter(riskScore) {
+      if (riskScore <= 20) {
+        return 'success';
+      }
+      if (riskScore <= 60) {
+        return 'warning';
+      }
+
+      return 'danger';
+    },
+
+    riskScoreColorFilter(riskScore) {
+      if (riskScore <= 20) {
+        return '#13ce66';
+      }
+      if (riskScore <= 60) {
+        return '#ffba00';
+      }
+
+      return '#ff4949';
+    }
+  },
 
   components: {
     LMap,
     LTileLayer,
-    LMarker,
-    LPopup
+    LPopup,
+    LCircleMarker
   },
 
   props: {
@@ -56,43 +90,44 @@ export default {
       default: '600px'
     },
 
-    lat: {
-      type: Number,
-      default: 53.958332
-    },
-
-    long: {
-      type: Number,
-      default: -1.080278
+    location: {
+      type: Object,
+      default: () => {}
     }
   },
 
   data() {
     return {
       zoom: 10,
-      center: latLng(this.lat, this.long),
+      center: null,
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      withPopup: latLng(this.lat, this.long),
+      withPopup: null,
       currentZoom: 11.5,
-      currentCenter: latLng(this.lat, this.long),
+      currentCenter: null,
       mapOptions: {
         zoomSnap: 0.5
       }
     };
   },
 
+  computed: {
+    lMarkers() {
+      if (!this.location) {
+        return [];
+      }
+
+      return this.location.markers.map(m => ({
+        ...m,
+        lMarker: latLng(m.lat, m.lng)
+      }));
+    }
+  },
+
   watch: {
-    lat() {
-      this.center = latLng(this.lat, this.long);
-      this.currentCenter = latLng(this.lat, this.long);
-      this.withPopup = latLng(this.lat, this.long);
-    },
-    long() {
-      this.center = latLng(this.lat, this.long);
-      this.currentCenter = latLng(this.lat, this.long);
-      this.withPopup = latLng(this.lat, this.long);
+    location() {
+      this.center = latLng(this.location.lat, this.location.lng);
+      this.currentCenter = latLng(this.location.lat, this.location.lng);
+      this.withPopup = latLng(this.location.lat, this.location.lng);
     }
   },
 
@@ -106,3 +141,17 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.someExtraClass {
+  background-color: aqua;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 0 20px 20px 20px;
+  box-shadow: 5px 3px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+</style>
